@@ -70,7 +70,7 @@
       <!-- ========== search bar ========== -->
       <div class="search-bar">
         <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="text" placeholder="Cerca o inizia una nuova chat">
+        <input type="text" placeholder="Cerca o inizia una nuova chat" v-model="searchContact">
       </div>
       <!-- ========== /search bar ========== -->
 
@@ -79,7 +79,8 @@
         <div class="contact"
           v-for="(contact, index) of contacts"
           @click="changeChat(index)"
-          :class="{'active': index == activeChat}">
+          :class="{'active': index == activeChat}"
+          v-show="contact.name.substring(0, searchContact.length).toLowerCase() === searchContact.toLowerCase()">
           
           <img class="avatar" :src="pathImg + contact.avatar + '.jpg'" alt="contact.name">
           

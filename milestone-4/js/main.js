@@ -168,7 +168,8 @@ createApp({
       ],
       pathImg: "img/avatar",
       activeChat: 0,
-      newMessageText: ""
+      newMessageText: "",
+      searchContact: ""
     }
   },
   methods:{
