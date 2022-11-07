@@ -23,10 +23,6 @@
 </head>
 
 <body>
-  
-  <!-- ========== sfondo verde ========== -->
-  <div class="background-bar"></div>
-  <!-- ========== /sfondo verde ========== -->
 
   <div class="container" id="app">
     
@@ -65,7 +61,7 @@
         <i class="fa-solid fa-bell-slash notification-icon"></i>
 
         <div>
-          <h3>Ricevi notifiche di nuovi messaggi</h3>
+          <h4>Ricevi notifiche di nuovi messaggi</h3>
           <a href="#">Attiva notifiche desktop</a>
         </div>
       </div>
@@ -86,11 +82,12 @@
           <img class="avatar" :src="pathImg + contact.avatar + '.jpg'" alt="contact.name">
           
           <div class="name-and-message">
-            <h3>{{contact.name}}</h3>
+            <h4>{{contact.name}}</h4>
             <span>Ultimo messaggio inviato</span>
           </div>
 
-          <span></span>
+          <span class="last-message-date">{{contact.messages[1].date.split(" ")[0].split("/")[0]}}/{{contact.messages[1].date.split(" ")[0].split("/")[1]}}
+          </span>
 
         </div>
       </div>

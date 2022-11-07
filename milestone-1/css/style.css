@@ -25,15 +25,7 @@ body {
   justify-content: center;
   align-items: center;
   font-family: 'Lato', sans-serif;
-}
-
-.background-bar {
-  background-color: var(--background-green);
-  width: 100%;
-  height: 15%;
-  position: absolute;
-  top: 0;
-  left: 0;
+  background: linear-gradient(var(--background-green)  15%, var(--background-gray) 15%);
 }
 
 .container {
@@ -41,8 +33,6 @@ body {
   width: 80%;
   max-width: 1500px;
   display: flex;
-  position: relative;
-  z-index: 999;
 }
 
 .avatar {
@@ -81,6 +71,7 @@ body {
   height: 100%;
   align-items: center;
   color: var(--button-icon-color);
+  font-size: 20px;
 }
 
 .options div:not(:last-child) {
@@ -106,6 +97,7 @@ body {
 
 .notification-message a {
   color: grey;
+  font-size: 13px;
 }
 
 .search-bar {
@@ -152,6 +144,19 @@ body {
 
 .name-and-message {
   padding-left: 15px;
+  width: 100%;
+}
+
+.name-and-message span {
+  font-size: 13px;
+  color: grey;
+}
+
+.last-message-date {
+  display: block;
+  text-align: right;
+  font-size: 13px;
+  color: grey;
 }
 
 /***** --/sidebar-- *****/
@@ -182,6 +187,10 @@ body {
   flex-direction: column;
   padding-left: 10%;
   padding-right: 10%;
+}
+
+.message {
+  margin-bottom: 20px;
 }
 
 .message:first-child {
@@ -220,15 +229,18 @@ body {
 .input-bar input {
   width: 100%;
   height: calc(var(--input-bar-height) - 20px);
+  padding-left: 10px;
 }
 
 .emoji-button {
   padding: 0 40px;
   color: var(--button-icon-color);
+  font-size: 20px;
 }
 
 .vocal-message {
   padding: 0 40px;
   color: var(--button-icon-color);
+  font-size: 20px;
 }
 /***** --/chat-- *****/
