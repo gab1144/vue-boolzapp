@@ -77,7 +77,9 @@
       <!-- ========== contacts ========== -->
       <div class="contacts">
         <div class="contact"
-          v-for="contact of contacts">
+          v-for="(contact, index) of contacts"
+          @click="changeChat(index)"
+          :class="{'active': index == activeChat}">
           
           <img class="avatar" :src="pathImg + contact.avatar + '.jpg'" alt="contact.name">
           
@@ -86,7 +88,7 @@
             <span>Ultimo messaggio inviato</span>
           </div>
 
-          <span class="last-message-date">{{contact.messages[1].date.split(" ")[0].split("/")[0]}}/{{contact.messages[1].date.split(" ")[0].split("/")[1]}}
+          <span class="last-message-date">{{contact.messages[contact.messages.length -1].date.split(" ")[1].split(":")[0]}}:{{contact.messages[contact.messages.length -1].date.split(":")[1].split(":")[0]}}
           </span>
 
         </div>
@@ -103,11 +105,11 @@
       <div class="contact-info">
 
         <div>
-          <img class="avatar" :src="pathImg + contacts[0].avatar + '.jpg'" alt="contacts[0].name">
+          <img class="avatar" :src="pathImg + contacts[activeChat].avatar + '.jpg'" alt="contacts[activeChat].name">
         </div>
 
         <div class="name">
-          <h5>{{contacts[0].name}}</h5>
+          <h5>{{contacts[activeChat].name}}</h5>
         </div>
 
         <div class="options">
@@ -129,9 +131,14 @@
 
       <!-- ========== messages ========== -->
       <div class="messages">
-        <div class=" message received">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem itaque unde, asperiores nihil impedit enim esse qui obcaecati, voluptate recusandae reiciendis molestiae quibusdam dolore iure illum neque dignissimos veritatis minus.</div>
+        <div class=" message"
+          v-for="message of contacts[activeChat].messages"
+          :class="message.status">
+          <span>{{message.message}}</span>
 
-        <div class="message sent">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem itaque unde, asperiores nihil impedit enim esse qui obcaecati, voluptate recusandae reiciendis molestiae quibusdam dolore iure illum neque dignissimos veritatis minus.</div>
+          <span class="message-hour">{{message.date.split(" ")[1].split(":")[0]}}:{{message.date.split(" ")[1].split(":")[1]}}
+          </span>
+        </div>
       </div>
       <!-- ========== /messages ========== -->
 

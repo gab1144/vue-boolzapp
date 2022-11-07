@@ -9,6 +9,7 @@
   --sent-message-green: rgb(213, 249, 186);
   --separation-line-grey: rgb(189, 189, 189);
   --button-icon-color: rgb(177, 177, 177);
+  --active-background: rgb(233, 235, 235);
 }
 
 * {
@@ -148,6 +149,10 @@ body {
   border-bottom: 1px solid var(--separation-line-grey);
 }
 
+.contact.active {
+  background-color: var(--active-background);
+}
+
 .contact:last-child {
   border-bottom: none;
 }
@@ -201,20 +206,29 @@ body {
 
 .message {
   margin-bottom: 20px;
+  position: relative;
+  font-size: 14px;
+  width: 50%;
+  max-width: 300px;
+  padding: 15px;
+  padding-bottom: 20px;
+  border-radius: 10px;
 }
 
 .message:first-child {
   margin-top: 50px;
 }
+
 .message:last-child {
   margin-bottom: 50px;
 }
 
-.sent, .received {
-  width: 50%;
-  max-width: 300px;
-  padding: 20px;
-  border-radius: 10px;
+.message-hour {
+  position: absolute;
+  right: 4px;
+  bottom: 0;
+  color: grey;
+  font-size: 12px;
 }
 
 .sent {

@@ -166,10 +166,13 @@ createApp({
           ],
         }
       ],
-      pathImg: "img/avatar"
+      pathImg: "img/avatar",
+      activeChat: 0
     }
   },
   methods:{
-
+    changeChat(index){
+      this.activeChat=index;
+    }
   }
 }).mount("#app")
