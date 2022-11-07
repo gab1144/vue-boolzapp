@@ -70,11 +70,17 @@ body {
   display: flex;
   height: 100%;
   align-items: center;
-  color: var(--button-icon-color);
-  font-size: 20px;
 }
 
-.options div:not(:last-child) {
+.options button {
+  background: none;
+  border: none;
+  color: var(--button-icon-color);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.options button:not(:last-child) {
   margin-right: 15px;
 }
 
@@ -117,6 +123,8 @@ body {
   border: 1px solid var(--separation-line-grey);
   padding: 0 30px;
   color: var(--button-icon-color);
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
 }
 
 .search-bar input {
@@ -125,6 +133,8 @@ body {
   border-left: none;
   width: 100%;
   padding-left: 10px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
 }
 
 .contacts {
@@ -230,17 +240,17 @@ body {
   width: 100%;
   height: calc(var(--input-bar-height) - 20px);
   padding-left: 10px;
+  border: none;
+  border-radius: 5px;
 }
 
-.emoji-button {
+.emoji-button button, .vocal-message button {
+  background: none;
+  border: none;
   padding: 0 40px;
   color: var(--button-icon-color);
   font-size: 20px;
-}
-
-.vocal-message {
-  padding: 0 40px;
-  color: var(--button-icon-color);
-  font-size: 20px;
+  height: var(--input-bar-height);
+  cursor: pointer;
 }
 /***** --/chat-- *****/
