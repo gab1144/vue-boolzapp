@@ -1,0 +1,93 @@
+:root {
+  --background-gray: rgb(217, 219, 212);
+  --background-green: rgb(0, 150, 136);
+  --input-bar-grey: rgb(243, 238, 234);
+  --input-bar-height: 70px;
+  --top-bar-height: 70px;
+  --top-bar-grey: rgb(234, 234, 234);
+  --notification-message-blue: rgb(142, 218, 252);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--background-gray);
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Lato', sans-serif;
+}
+
+.background-bar {
+  background-color: var(--background-green);
+  width: 100%;
+  height: 15%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.container {
+  height: 90%;
+  width: 80%;
+  display: flex;
+  position: relative;
+  z-index: 999;
+}
+
+/***** --sidebar-- *****/
+.sidebard {
+  background-color: white;
+  height: 100%;
+  width: 20%;
+}
+
+.account-and-settings {
+  height: var(--top-bar-height);
+  background-color: var(--top-bar-grey);
+  border-right: 1px solid grey;
+}
+
+.notification-message {
+  width: 100%;
+  height: 80px;
+  background-color: var(--notification-message-blue);
+}
+
+.search-bar {
+  width: 100%;
+  height: 50px;
+  background-color: var(--input-bar-grey);
+}
+/***** --/sidebar-- *****/
+
+/***** --chat-- *****/
+.chat {
+  background-image: url("../img/mine.jpg");
+  height: 100%;
+  width: 80%;
+}
+
+.contact-info {
+  height: var(--top-bar-height);
+  width: 100%;
+  background-color: var(--top-bar-grey);
+}
+
+.messages {
+  height: calc(calc(100% - var(--input-bar-height)) - var(--top-bar-height));
+  width: 100%;
+}
+
+.input-bar {
+  background-color: var(--input-bar-grey);
+  height: var(--input-bar-height);
+  width: 100%;
+}
+/***** --/sidebar-- *****/
