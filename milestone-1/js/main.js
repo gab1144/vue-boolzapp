@@ -165,7 +165,8 @@ createApp({
             }
           ],
         }
-      ]
+      ],
+      pathImg: "img/avatar"
     }
   },
   methods:{
