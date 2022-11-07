@@ -167,12 +167,85 @@ createApp({
         }
       ],
       pathImg: "img/avatar",
-      activeChat: 0
+      activeChat: 0,
+      newMessageText: ""
     }
   },
   methods:{
     changeChat(index){
       this.activeChat=index;
+    },
+    sendNewMessage(){
+      const newMessage= {
+        date: this.getTime(),
+        message: this.newTaskText,
+        status: 'sent'
+      }
+      newMessage.message = this.newMessageText;
+      this.contacts[this.activeChat].messages.push(newMessage);
+      this.newMessageText = "";
+      this.botRecivedMessage();
+    },
+    getTime(){
+      const data = new Date();
+      let output;
+
+      if(data.getDate() < 10) {
+        output= "0" + data.getDate();
+      } else {
+        output= data.getDate();
+      }
+
+      output+= "/";
+
+      if((data.getMonth()+1) < 10) {
+        output= "0" + (data.getMonth()+1);
+      } else {
+        output += data.getMonth()+1;
+      }
+
+      output+= "/";
+
+      if(data.getFullYear() < 10) {
+        output= "0" + data.getFullYear();
+      } else {
+        output += data.getFullYear();
+      }
+
+      output+= " ";
+
+      if(data.getHours() < 10) {
+        output= "0" + data.getHours();
+      } else {
+        output += data.getHours();
+      }
+
+      output+= ":";
+
+      if(data.getMinutes() < 10) {
+        output= "0" + data.getMinutes();
+      } else {
+        output += data.getMinutes();
+      }
+
+      output+= ":";
+
+      if(data.getSeconds() < 10) {
+        output= "0" + data.getSeconds();
+      } else {
+        output += data.getSeconds();
+      }
+      return output;
+    },
+    botRecivedMessage(){
+      setTimeout(()=>{
+        const newMessage= {
+          date: this.getTime(),
+          message: "Ok!",
+          status: 'received'
+        }
+        this.contacts[this.activeChat].messages.push(newMessage);
+      },1000)
     }
   }
 }).mount("#app")
