@@ -80,7 +80,7 @@
           v-for="(contact, index) of contacts"
           @click="changeChat(index)"
           :class="{'active': index == activeChat}"
-          v-show="contact.name.substring(0, searchContact.length).toLowerCase() === searchContact.toLowerCase()">
+          v-show="contact.name.toLowerCase().includes(searchContact.toLowerCase())">
           
           <img class="avatar" :src="pathImg + contact.avatar + '.jpg'" alt="contact.name">
           
