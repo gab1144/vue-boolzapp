@@ -245,6 +245,9 @@ body {
 }
 
 .message-options-menu {
+  position: absolute;
+  top: 25px;
+  right: 5px;
   width: max-content;
   background-color: white;
   padding: 20px;

@@ -177,6 +177,8 @@ createApp({
   methods:{
     changeChat(index){
       this.activeChat=index;
+      this.showOptions=null;
+      this.showChevronOnHover=null;
     },
     sendNewMessage(){
       const newMessage= {
@@ -279,6 +281,10 @@ createApp({
       } else {
         return "";
       }
+    },
+    mouseleaveNull(){
+      this.showChevronOnHover = null;
+      this.showOptions = null;
     }
   }
 }).mount("#app")
