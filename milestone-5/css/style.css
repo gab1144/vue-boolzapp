@@ -274,12 +274,20 @@ body {
 
 .message-options-menu div{
   padding-bottom: 20px;
+  cursor: pointer;
 }
 
 .sent {
   background-color: var(--sent-message-green);
   align-self: flex-end;
   margin-right: 10%;
+}
+
+.favourite {
+  position: absolute;
+  right: 40px;
+  bottom: 0;
+  color: var(--button-icon-color);
 }
 
 .received {

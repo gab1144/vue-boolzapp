@@ -150,6 +150,8 @@
             <span class="message-hour" :set="time = formatTime(index)">
               {{time}}
             </span>
+
+            <span class="favourite" v-show="showStar(index)"><i class="fa-solid fa-star"></i></span>
   
             <button class="message-options" 
               @click="showOptions = index">
@@ -162,6 +164,8 @@
               <div @click="openInfo(index)">Message info</div>
 
               <div @click="deleteMessage(index)">Delete message</div>
+
+              <div @click="addRemoveFavouriteMessages(index)" :set="buttonFavouriteText = buttonFavoriteMessage(index)">{{buttonFavouriteText}}</div>
             </div>
           </div>
           

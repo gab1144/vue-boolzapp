@@ -187,7 +187,8 @@ createApp({
       ],
       found: null,
       searchedWord: "",
-      searchedWordShow: false
+      searchedWordShow: false,
+      favouriteMessages: []
     }
   },
   methods:{
@@ -292,6 +293,47 @@ createApp({
     hideShowsearchWordInput(){
       this.searchedWordShow = !this.searchedWordShow;
       this.searchedWord = "";
+    },
+    addRemoveFavouriteMessages(index){
+      let found = -1;
+      for(let i=0; i<this.favouriteMessages.length; i++){
+        if(this.favouriteMessages[i].chatId === this.activeChat){
+          if(this.favouriteMessages[i].messageId === index){
+            found = i;
+          }
+        }
+      }
+      if(found !== -1){
+        this.favouriteMessages.splice(found, 1);
+      } else {
+        const favouriteId = {
+          chatId: this.activeChat,
+          messageId: index
+        }
+        this.favouriteMessages.push(favouriteId);
+      }
+      
+    },
+    showStar(index){
+      for(let i=0; i<this.favouriteMessages.length; i++){
+        if(this.favouriteMessages[i].chatId === this.activeChat){
+          if(this.favouriteMessages[i].messageId === index){
+            return true;
+          }
+        }
+      }
+      return false;
+    },
+    buttonFavoriteMessage(index){
+      let msg = "Aggiungi ai preferiti";
+      for(let i=0; i<this.favouriteMessages.length; i++){
+        if(this.favouriteMessages[i].chatId === this.activeChat){
+          if(this.favouriteMessages[i].messageId === index){
+            msg= "Rimuovi dai preferiti";
+          }
+        }
+      }
+      return msg;
     }
   }
 }).mount("#app")
