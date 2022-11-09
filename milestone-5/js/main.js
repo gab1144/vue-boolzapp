@@ -192,56 +192,11 @@ createApp({
       this.botRecivedMessage();
     },
     getTime(){
-      const data = new Date();
-      let output;
+      const DateTime = luxon.DateTime;
+      const now = DateTime.now().setLocale('it').toFormat('dd/LL/yyyy hh:mm:ss');
 
-      if(data.getDate() < 10) {
-        output= "0" + data.getDate();
-      } else {
-        output= data.getDate();
-      }
+      return now;
 
-      output+= "/";
-
-      if((data.getMonth()+1) < 10) {
-        output+= "0" + (data.getMonth()+1);
-      } else {
-        output += data.getMonth()+1;
-      }
-
-      output+= "/";
-
-      if(data.getFullYear() < 10) {
-        output+= "0" + data.getFullYear();
-      } else {
-        output += data.getFullYear();
-      }
-
-      output+= " ";
-
-      if(data.getHours() < 10) {
-        output+= "0" + data.getHours();
-      } else {
-        output += data.getHours();
-      }
-
-      output+= ":";
-
-      if(data.getMinutes() < 10) {
-        output+= "0" + data.getMinutes();
-      } else {
-        output += data.getMinutes();
-      }
-      
-      output+= ":";
-
-      if(data.getSeconds() < 10) {
-        output+= "0" + data.getSeconds();
-      } else {
-        output += data.getSeconds();
-      }
-      
-      return output;
     },
     botRecivedMessage(){
       setTimeout(()=>{
