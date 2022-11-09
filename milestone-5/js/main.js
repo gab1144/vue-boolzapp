@@ -12,17 +12,20 @@ createApp({
             {
               date: '10/01/2020 15:30:55',
               message: 'Hai portato a spasso il cane?',
-              status: 'sent'
+              status: 'sent',
+              favourite: false
             },
             {
               date: '10/01/2020 15:50:00',
               message: 'Ricordati di stendere i panni',
-              status: 'sent'
+              status: 'sent',
+              favourite: false
             },
             {
               date: '10/01/2020 16:15:22',
               message: 'Tutto fatto!',
-              status: 'received'
+              status: 'received',
+              favourite: false
             }
           ],
         },
@@ -34,17 +37,20 @@ createApp({
             {
               date: '20/03/2020 16:30:00',
               message: 'Ciao come stai?',
-              status: 'sent'
+              status: 'sent',
+              favourite: false
             },
             {
               date: '20/03/2020 16:30:55',
               message: 'Bene grazie! Stasera ci vediamo?',
-              status: 'received'
+              status: 'received',
+              favourite: false
             },
             {
               date: '20/03/2020 16:35:00',
               message: 'Mi piacerebbe ma devo andare a fare la spesa.',
-              status: 'sent'
+              status: 'sent',
+              favourite: false
             }
           ],
         },
@@ -56,17 +62,20 @@ createApp({
             {
               date: '28/03/2020 10:10:40',
               message: 'La Marianna va in campagna',
-              status: 'received'
+              status: 'received',
+              favourite: false
             },
             {
               date: '28/03/2020 10:20:10',
               message: 'Sicuro di non aver sbagliato chat?',
-              status: 'sent'
+              status: 'sent',
+              favourite: false
             },
             {
               date: '28/03/2020 16:15:22',
               message: 'Ah scusa!',
-              status: 'received'
+              status: 'received',
+              favourite: false
             }
           ],
         },
@@ -78,12 +87,14 @@ createApp({
             {
               date: '10/01/2020 15:30:55',
               message: 'Lo sai che ha aperto una nuova pizzeria?',
-              status: 'sent'
+              status: 'sent',
+              favourite: false
             },
             {
               date: '10/01/2020 15:50:00',
               message: 'Si, ma preferirei andare al cinema',
-              status: 'received'
+              status: 'received',
+              favourite: false
             }
           ],
         },
@@ -95,12 +106,14 @@ createApp({
             {
               date: '10/01/2020 15:30:55',
               message: 'Ricordati di chiamare la nonna',
-              status: 'sent'
+              status: 'sent',
+              favourite: false
             },
             {
               date: '10/01/2020 15:50:00',
               message: 'Va bene, stasera la sento',
-              status: 'received'
+              status: 'received',
+              favourite: false
             }
           ],
         },
@@ -112,17 +125,20 @@ createApp({
             {
               date: '10/01/2020 15:30:55',
               message: 'Ciao Claudia, hai novità?',
-              status: 'sent'
+              status: 'sent',
+              favourite: false
             },
             {
               date: '10/01/2020 15:50:00',
               message: 'Non ancora',
-              status: 'received'
+              status: 'received',
+              favourite: false
             },
             {
               date: '10/01/2020 15:51:00',
               message: 'Nessuna nuova, buona nuova',
-              status: 'sent'
+              status: 'sent',
+              favourite: false
             }
           ],
         },
@@ -134,12 +150,14 @@ createApp({
             {
               date: '10/01/2020 15:30:55',
               message: 'Fai gli auguri a Martina che è il suo compleanno!',
-              status: 'sent'
+              status: 'sent',
+              favourite: false
             },
             {
               date: '10/01/2020 15:50:00',
               message: 'Grazie per avermelo ricordato, le scrivo subito!',
-              status: 'received'
+              status: 'received',
+              favourite: false
             }
           ],
         },
@@ -151,17 +169,20 @@ createApp({
             {
               date: '10/01/2020 15:30:55',
               message: 'Ciao, andiamo a mangiare la pizza stasera?',
-              status: 'received'
+              status: 'received',
+              favourite: false
             },
             {
               date: '10/01/2020 15:50:00',
               message: 'No, l\'ho già mangiata ieri, ordiniamo sushi!',
-              status: 'sent'
+              status: 'sent',
+              favourite: false
             },
             {
               date: '10/01/2020 15:51:00',
               message: 'OK!!',
-              status: 'received'
+              status: 'received',
+              favourite: false
             }
           ],
         }
@@ -188,7 +209,6 @@ createApp({
       found: null,
       searchedWord: "",
       searchedWordShow: false,
-      favouriteMessages: []
     }
   },
   methods:{
@@ -205,7 +225,8 @@ createApp({
       const newMessage= {
         date: this.getTime(),
         message: "",
-        status: 'sent'
+        status: 'sent',
+        favourite: false
       }
       newMessage.message = this.newMessageText;
       this.contacts[this.activeChat].messages.push(newMessage);
@@ -230,7 +251,8 @@ createApp({
         const newMessage= {
           date: this.getTime(),
           message: this.answers[this.getRndInteger(0, this.answers.length - 1)],
-          status: 'received'
+          status: 'received',
+          favourite: false
         }
 
         this.contacts[activeIndex].messages.push(newMessage);
@@ -307,45 +329,25 @@ createApp({
       this.searchedWord = "";
     },
     addRemoveFavouriteMessages(index){
-      let found = -1;
-      for(let i=0; i<this.favouriteMessages.length; i++){
-        if(this.favouriteMessages[i].chatId === this.activeChat){
-          if(this.favouriteMessages[i].messageId === index){
-            found = i;
-          }
-        }
-      }
-      if(found !== -1){
-        this.favouriteMessages.splice(found, 1);
+      if(!this.contacts[this.activeChat].messages[index].favourite){
+        this.contacts[this.activeChat].messages[index].favourite = true;
       } else {
-        const favouriteId = {
-          chatId: this.activeChat,
-          messageId: index
-        }
-        this.favouriteMessages.push(favouriteId);
+        this.contacts[this.activeChat].messages[index].favourite = false;
       }
-      
     },
     showStar(index){
-      for(let i=0; i<this.favouriteMessages.length; i++){
-        if(this.favouriteMessages[i].chatId === this.activeChat){
-          if(this.favouriteMessages[i].messageId === index){
-            return true;
-          }
-        }
+      if(this.contacts[this.activeChat].messages[index].favourite){
+        return true;
+      } else {
+        return false;
       }
-      return false;
     },
     buttonFavoriteMessage(index){
-      let msg = "Aggiungi ai preferiti";
-      for(let i=0; i<this.favouriteMessages.length; i++){
-        if(this.favouriteMessages[i].chatId === this.activeChat){
-          if(this.favouriteMessages[i].messageId === index){
-            msg= "Rimuovi dai preferiti";
-          }
-        }
+      if(this.contacts[this.activeChat].messages[index].favourite){
+        return "Rimuovi dai preferiti";
+      } else {
+        return "Aggiungi ai preferiti";
       }
-      return msg;
     },
     scrollToBottomOfChat(){
       const element = document.getElementById("box");
