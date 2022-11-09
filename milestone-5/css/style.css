@@ -288,6 +288,10 @@ body {
   margin-left: 10%;
 }
 
+.found-message{
+  background-color: yellow;
+}
+
 .info-message{
   position: absolute;
   top: 0;

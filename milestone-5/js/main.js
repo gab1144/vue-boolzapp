@@ -184,7 +184,10 @@ createApp({
         "A che ora?",
         "Ho fatto la spesa",
         "Buongiorno",
-      ]
+      ],
+      found: null,
+      searchedWord: "",
+      searchedWordShow: false
     }
   },
   methods:{
@@ -194,15 +197,17 @@ createApp({
       this.showChevronOnHover=null;
     },
     sendNewMessage(){
+      if(this.newMessageText !== ""){
       const newMessage= {
         date: this.getTime(),
-        message: this.newTaskText,
+        message: "",
         status: 'sent'
       }
       newMessage.message = this.newMessageText;
       this.contacts[this.activeChat].messages.push(newMessage);
       this.newMessageText = "";
       this.botRecivedMessage();
+      }
     },
     getTime(){
       const DateTime = luxon.DateTime;
@@ -272,6 +277,21 @@ createApp({
     },
     getRndInteger(min, max){
       return Math.floor(Math.random() * (max - min + 1) ) + min;
+    },
+    searchWordInMessage(message){
+      if(this.searchedWord.trim().toLowerCase() !== ""){
+        if(message.message.trim().toLowerCase().includes(this.searchedWord.trim().toLowerCase())){
+          return true;
+        } else {
+          return false;
+        }
+      }else{
+        return false;
+      }
+    },
+    hideShowsearchWordInput(){
+      this.searchedWordShow = !this.searchedWordShow;
+      this.searchedWord = "";
     }
   }
 }).mount("#app")

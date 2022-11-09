@@ -121,7 +121,10 @@
             <i class="fa-solid fa-ellipsis-vertical"></i>
           </button>
 
-          <button>
+          <div v-show="searchedWordShow">
+            <input type="text" v-model="searchedWord" placeholder="Cerca un messaggio">
+          </div>
+          <button @click="hideShowsearchWordInput()">
             <i class="fa-solid fa-magnifying-glass"></i>
           </button>
 
@@ -142,7 +145,7 @@
             @mouseover="showChevronOnHover = index"
             @mouseleave="mouseleaveNull()">
             
-            <span>{{message.message}}</span>
+            <span :class="{'found-message': searchWordInMessage(message)}">{{message.message}}</span>
   
             <span class="message-hour" :set="time = formatTime(index)">
               {{time}}
