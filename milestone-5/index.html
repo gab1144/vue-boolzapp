@@ -172,9 +172,39 @@
           
           <!-- ========== info messaggio ========== -->
           <div v-if="messsageInfoVisible" class="info-message">
+
+
+
+
+
+
+            <div class="fake-message">
+              <div class="message" :class="fakeMessage.status">
+            
+                <span>{{fakeMessage.message}}</span>
+  
+                <span class="message-hour" :set="fakeTime = formatTimeString(fakeMessage.date)">
+                  {{fakeTime}}
+                </span>
+
+                <span class="favourite" v-show="fakeMessage.favourite"><i class="fa-solid fa-star"></i></span>
+              </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
             <button @click="closeInfo()" class="close-info"><i class="fa-solid fa-xmark"></i></button>
-            <span class="message-information">Data e orario: {{messageDate}}</span>
-            <span class="message-information">Status: {{messageStatus}}</span>
+            <div class="message-information-area">
+              <span class="message-information">Data e orario: {{messageDate}}</span>
+              <span class="message-information">Status: {{messageStatus}}</span>
+            </div>
           </div>
           <!-- ========== /info messaggio ========== -->
         </div>

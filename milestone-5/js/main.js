@@ -209,6 +209,7 @@ createApp({
       found: null,
       searchedWord: "",
       searchedWordShow: false,
+      fakeMessage: null
     }
   },
   methods:{
@@ -272,8 +273,12 @@ createApp({
     },
     formatTime(index){
       const date = this.contacts[this.activeChat].messages[index].date;
-      return date.slice(11,16);;
+      return date.slice(11,16);
     },
+    formatTimeString(string){
+      return string.slice(11,16);
+    }
+    ,
     lastMessageFormatTime(index){
       if(this.contacts[index].messages.length !== 0){
         const date = this.contacts[index].messages[this.contacts[index].messages.length - 1].date;
@@ -308,6 +313,7 @@ createApp({
     },
     openInfo(index){
       const message = this.contacts[this.activeChat].messages[index];
+      this.fakeMessage = message;
       this.messageDate = message.date;
       if(message.status === "sent"){
         this.messageStatus = "inviato";
