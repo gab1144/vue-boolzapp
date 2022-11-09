@@ -174,7 +174,17 @@ createApp({
       showOptions: null,
       messsageInfoVisible: false,
       messageDate: "",
-      messageStatus: ""
+      messageStatus: "",
+      answers: [
+        "Ok!",
+        "Tutto bene, grazie",
+        "Ci vediamo dopo",
+        "Ora non posso stare al telefono. Ti scrivo io dopo, ok?",
+        "Ciao",
+        "A che ora?",
+        "Ho fatto la spesa",
+        "Buongiorno",
+      ]
     }
   },
   methods:{
@@ -205,7 +215,7 @@ createApp({
       setTimeout(()=>{
         const newMessage= {
           date: this.getTime(),
-          message: "Ok!",
+          message: this.answers[this.getRndInteger(0, this.answers.length)],
           status: 'received'
         }
         this.contacts[this.activeChat].messages.push(newMessage);
@@ -259,6 +269,9 @@ createApp({
     },
     closeInfo(){
       this.messsageInfoVisible = false;
+    },
+    getRndInteger(min, max){
+      return Math.floor(Math.random() * (max - min + 1) ) + min;
     }
   }
 }).mount("#app")
