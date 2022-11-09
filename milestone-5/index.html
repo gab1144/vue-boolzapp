@@ -156,10 +156,20 @@
             </button>
   
             <div class="message-options-menu" v-if="showOptions === index">
-              <div>Message info</div>
+              <div @click="openInfo(index)">Message info</div>
+
               <div @click="deleteMessage(index)">Delete message</div>
             </div>
           </div>
+          
+          
+          <!-- ========== info messaggio ========== -->
+          <div v-show="messsageInfoVisible" class="info-message">
+            <button @click="closeInfo()" class="close-info"><i class="fa-solid fa-xmark"></i></button>
+            <span class="message-information">Data e orario: {{messageDate}}</span>
+            <span class="message-information">Status: {{messageStatus}}</span>
+          </div>
+          <!-- ========== /info messaggio ========== -->
         </div>
         <!-- ========== /messages ========== -->
 

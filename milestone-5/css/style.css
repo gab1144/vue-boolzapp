@@ -287,6 +287,32 @@ body {
   margin-left: 10%;
 }
 
+.info-message{
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: white;
+  width: 50%;
+  height: 100%;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.close-info {
+  width: 30px;
+  aspect-ratio: 1;
+  align-self: flex-end;
+  background: none;
+  border: none;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.message-information{
+  display: block;
+}
+
 .input-bar {
   background-color: var(--input-bar-grey);
   height: var(--input-bar-height);

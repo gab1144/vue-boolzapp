@@ -171,7 +171,10 @@ createApp({
       newMessageText: "",
       searchContact: "",
       showChevronOnHover: null,
-      showOptions: null
+      showOptions: null,
+      messsageInfoVisible: false,
+      messageDate: "",
+      messageStatus: ""
     }
   },
   methods:{
@@ -243,6 +246,19 @@ createApp({
     mouseleaveNull(){
       this.showChevronOnHover = null;
       this.showOptions = null;
+    },
+    openInfo(index){
+      const message = this.contacts[this.activeChat].messages[index];
+      this.messageDate = message.date;
+      if(message.status === "sent"){
+        this.messageStatus = "inviato";
+      } else {
+        this.messageStatus = "ricevuto";
+      }
+      this.messsageInfoVisible = true;
+    },
+    closeInfo(){
+      this.messsageInfoVisible = false;
     }
   }
 }).mount("#app")
