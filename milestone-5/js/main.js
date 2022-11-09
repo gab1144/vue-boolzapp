@@ -196,6 +196,9 @@ createApp({
       this.activeChat=index;
       this.showOptions=null;
       this.showChevronOnHover=null;
+      setTimeout(()=>{
+        this.scrollToBottomOfChat();
+      }, 0)
     },
     sendNewMessage(){
       if(this.newMessageText !== ""){
@@ -209,7 +212,7 @@ createApp({
       this.newMessageText = "";
       setTimeout(()=>{
         this.scrollToBottomOfChat();
-      }, 1)
+      }, 0)
       this.botRecivedMessage();
       }
     },
@@ -231,7 +234,7 @@ createApp({
         this.contacts[this.activeChat].messages.push(newMessage);
         setTimeout(()=>{
           this.scrollToBottomOfChat();
-        }, 1)
+        }, 0)
       },1000)
     },
     formatTime(index){
