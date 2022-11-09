@@ -213,8 +213,10 @@ createApp({
       setTimeout(()=>{
         this.scrollToBottomOfChat();
       }, 0)
-      this.botRecivedMessage();
+      this.moveContactToTop(this.activeChat);
+      this.botRecivedMessage(this.activeChat);
       }
+      
     },
     getTime(){
       const DateTime = luxon.DateTime;
@@ -223,7 +225,7 @@ createApp({
       return now;
 
     },
-    botRecivedMessage(){
+    botRecivedMessage(activeIndex){
       setTimeout(()=>{
         const newMessage= {
           date: this.getTime(),
@@ -231,7 +233,7 @@ createApp({
           status: 'received'
         }
 
-        this.contacts[this.activeChat].messages.push(newMessage);
+        this.contacts[activeIndex].messages.push(newMessage);
         setTimeout(()=>{
           this.scrollToBottomOfChat();
         }, 0)
@@ -348,6 +350,13 @@ createApp({
     scrollToBottomOfChat(){
       const element = document.getElementById("box");
         element.scrollTop = element.scrollHeight;
+    },
+    moveContactToTop(activeIndex){
+      const el = this.contacts[activeIndex];
+      const exActive = activeIndex;
+      this.contacts.unshift(el);
+      this.activeChat=0;
+      this.contacts.splice(exActive+1, 1);
     }
   }
 }).mount("#app")
