@@ -220,7 +220,7 @@ createApp({
     },
     getTime(){
       const DateTime = luxon.DateTime;
-      const now = DateTime.now().setLocale('it').toFormat('dd/LL/yyyy hh:mm:ss');
+      const now = DateTime.now().setLocale('it').toFormat('dd/LL/yyyy HH:mm:ss');
 
       return now;
 
