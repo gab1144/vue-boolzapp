@@ -75,7 +75,7 @@
       <!-- ========== /search bar ========== -->
 
       <!-- ========== contacts ========== -->
-      <div class="contacts">
+      <div class="contacts scrollbar-space">
         <div class="contact"
           v-for="(contact, index) of contacts"
           @click="changeChat(index)"
@@ -131,34 +131,37 @@
       </div>
       <!-- ========== /contact info ========== -->
 
-      <!-- ========== messages ========== -->
-      <div class="messages">
-        <div class=" message"
-          v-for="(message, index) of contacts[activeChat].messages"
-          :class="message.status"
-          @mouseover="showChevronOnHover = index"
-          @mouseleave="mouseleaveNull()">
-          
-          <span>{{message.message}}</span>
-
-          <span class="message-hour" :set="time = formatTime(index)">
-            {{time}}
-          </span>
-
-          <button class="message-options" 
-            @click="showOptions = index">
-            <i class="fa-solid fa-chevron-down"
-            v-if="showChevronOnHover === index || showOptions === index"></i>
-
-          </button>
-
-          <div class="message-options-menu" v-if="showOptions === index">
-            <div>Message info</div>
-            <div @click="deleteMessage(index)">Delete message</div>
+      <div class="messages-and-scrollbar">
+        <!-- ========== messages ========== -->
+        <div class="messages scrollbar-space">
+          <div class=" message"
+            v-for="(message, index) of contacts[activeChat].messages"
+            :class="message.status"
+            @mouseover="showChevronOnHover = index"
+            @mouseleave="mouseleaveNull()">
+            
+            <span>{{message.message}}</span>
+  
+            <span class="message-hour" :set="time = formatTime(index)">
+              {{time}}
+            </span>
+  
+            <button class="message-options" 
+              @click="showOptions = index">
+              <i class="fa-solid fa-chevron-down"
+              v-if="showChevronOnHover === index || showOptions === index"></i>
+  
+            </button>
+  
+            <div class="message-options-menu" v-if="showOptions === index">
+              <div>Message info</div>
+              <div @click="deleteMessage(index)">Delete message</div>
+            </div>
           </div>
         </div>
+        <!-- ========== /messages ========== -->
+
       </div>
-      <!-- ========== /messages ========== -->
 
       <!-- ========== input bar ========== -->
       <div class="input-bar">

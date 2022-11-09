@@ -204,7 +204,7 @@ createApp({
       output+= "/";
 
       if((data.getMonth()+1) < 10) {
-        output= "0" + (data.getMonth()+1);
+        output+= "0" + (data.getMonth()+1);
       } else {
         output += data.getMonth()+1;
       }
@@ -212,7 +212,7 @@ createApp({
       output+= "/";
 
       if(data.getFullYear() < 10) {
-        output= "0" + data.getFullYear();
+        output+= "0" + data.getFullYear();
       } else {
         output += data.getFullYear();
       }
@@ -220,7 +220,7 @@ createApp({
       output+= " ";
 
       if(data.getHours() < 10) {
-        output= "0" + data.getHours();
+        output+= "0" + data.getHours();
       } else {
         output += data.getHours();
       }
@@ -228,18 +228,19 @@ createApp({
       output+= ":";
 
       if(data.getMinutes() < 10) {
-        output= "0" + data.getMinutes();
+        output+= "0" + data.getMinutes();
       } else {
         output += data.getMinutes();
       }
-
+      
       output+= ":";
 
       if(data.getSeconds() < 10) {
-        output= "0" + data.getSeconds();
+        output+= "0" + data.getSeconds();
       } else {
         output += data.getSeconds();
       }
+      
       return output;
     },
     botRecivedMessage(){
@@ -253,15 +254,17 @@ createApp({
       },1000)
     },
     formatTime(index){
-      return `${this.contacts[this.activeChat].messages[index].date.split(' ')[1].split(':')[0]}:${this.contacts[this.activeChat].messages[index].date.split(' ')[1].split(':')[1]}`;
+      const date = this.contacts[this.activeChat].messages[index].date;
+      return date.slice(11,16);;
     },
     lastMessageFormatTime(index){
       if(this.contacts[index].messages.length !== 0){
-        return `${this.contacts[index].messages[this.contacts[index].messages.length - 1].date.split(' ')[1].split(':')[0]}:${this.contacts[index].messages[this.contacts[index].messages.length - 1].date.split(' ')[1].split(':')[1]}`;
-        } else {
-          return "";
-        }
-      },
+        const date = this.contacts[index].messages[this.contacts[index].messages.length - 1].date;
+        return date.slice(11,16);
+      } else {
+        return "";
+      }
+    },
     deleteMessage(index){
       this.showOptions = null;
       if(this.contacts[this.activeChat].messages.length !== 1){
