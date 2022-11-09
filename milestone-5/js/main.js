@@ -268,7 +268,7 @@ createApp({
           }
           i++;
         }
-      },3000)
+      },1000)
     },
     formatTime(index){
       const date = this.contacts[this.activeChat].messages[index].date;
