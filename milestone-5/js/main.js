@@ -235,7 +235,7 @@ createApp({
         this.scrollToBottomOfChat();
       }, 0)
       this.moveContactToTop(this.activeChat);
-      this.botRecivedMessage(this.activeChat);
+      this.botReceivedMessage(this.contacts[this.activeChat])
       }
       
     },
@@ -246,20 +246,29 @@ createApp({
       return now;
 
     },
-    botRecivedMessage(activeIndex){
+    botReceivedMessage(contactToAnwer){
       setTimeout(()=>{
-        const newMessage= {
-          date: this.getTime(),
-          message: this.answers[this.getRndInteger(0, this.answers.length - 1)],
-          status: 'received',
-          favourite: false
+        let i=0;
+        let found = false;
+        while(i < this.contacts.length && found === false){
+          if(this.contacts[i] === contactToAnwer){
+            const newMessage= {
+              date: this.getTime(),
+              message: this.answers[this.getRndInteger(0, this.answers.length - 1)],
+              status: 'received',
+              favourite: false
+            }
+    
+            this.contacts[i].messages.push(newMessage);
+            this.moveContactToTopReceived(contactToAnwer);
+            setTimeout(()=>{
+              this.scrollToBottomOfChat();
+            }, 0)
+            found = true;
+          }
+          i++;
         }
-
-        this.contacts[activeIndex].messages.push(newMessage);
-        setTimeout(()=>{
-          this.scrollToBottomOfChat();
-        }, 0)
-      },1000)
+      },3000)
     },
     formatTime(index){
       const date = this.contacts[this.activeChat].messages[index].date;
@@ -359,6 +368,30 @@ createApp({
       this.contacts.unshift(el);
       this.activeChat=0;
       this.contacts.splice(exActive+1, 1);
+    },
+    moveContactToTopReceived(contactToAnwer){
+      let i=0;
+      let found = false;
+      while(i < this.contacts.length && found === false){
+        if(this.contacts[i] === contactToAnwer){
+          const elementActive =this.contacts[this.activeChat];
+          const el = this.contacts[i];
+          this.contacts.unshift(el);
+          this.contacts.splice(i+1, 1);
+          let j = 0;
+          let foundj = false;
+
+          while(j < this.contacts.length && foundj === false){
+            if(this.contacts[j] === elementActive){
+              this.activeChat= j;
+              foundj = true;
+            }
+            j++;
+          }
+          found = true;
+        }
+        i++;
+      }
     }
   }
 }).mount("#app")
