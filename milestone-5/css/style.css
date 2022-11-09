@@ -209,6 +209,7 @@ body {
   height: calc(100% - calc(var(--input-bar-height) + var(--top-bar-height)));
   width: 100%;
   overflow-y: auto;
+  overflow-x: hidden;
   position: relative;
   background: linear-gradient(90deg, rgba(255, 255, 255, 0),  calc(100% - 8px), rgb(250, 250, 250) calc(100% - 8px));
 }
@@ -297,6 +298,16 @@ body {
   padding: 30px;
   display: flex;
   flex-direction: column;
+  animation: open-info 0.2s linear;
+}
+
+@keyframes open-info {
+  0%{
+    right: -50%;
+  }
+  100% {
+    right: 0px;
+  }
 }
 
 .close-info {

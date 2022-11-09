@@ -164,7 +164,7 @@
           
           
           <!-- ========== info messaggio ========== -->
-          <div v-show="messsageInfoVisible" class="info-message">
+          <div v-if="messsageInfoVisible" class="info-message">
             <button @click="closeInfo()" class="close-info"><i class="fa-solid fa-xmark"></i></button>
             <span class="message-information">Data e orario: {{messageDate}}</span>
             <span class="message-information">Status: {{messageStatus}}</span>
