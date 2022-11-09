@@ -207,6 +207,9 @@ createApp({
       newMessage.message = this.newMessageText;
       this.contacts[this.activeChat].messages.push(newMessage);
       this.newMessageText = "";
+      setTimeout(()=>{
+        this.scrollToBottomOfChat();
+      }, 1)
       this.botRecivedMessage();
       }
     },
@@ -221,10 +224,14 @@ createApp({
       setTimeout(()=>{
         const newMessage= {
           date: this.getTime(),
-          message: this.answers[this.getRndInteger(0, this.answers.length)],
+          message: this.answers[this.getRndInteger(0, this.answers.length - 1)],
           status: 'received'
         }
+
         this.contacts[this.activeChat].messages.push(newMessage);
+        setTimeout(()=>{
+          this.scrollToBottomOfChat();
+        }, 1)
       },1000)
     },
     formatTime(index){
@@ -334,6 +341,10 @@ createApp({
         }
       }
       return msg;
+    },
+    scrollToBottomOfChat(){
+      const element = document.getElementById("box");
+        element.scrollTop = element.scrollHeight;
     }
   }
 }).mount("#app")
