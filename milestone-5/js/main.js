@@ -213,6 +213,10 @@ createApp({
     }
   },
   methods:{
+    /**
+     * Cambia la chat attiva sulla base del valore di index
+     * @param {*} index Intero (indice del contatto da rendere attivo)
+     */
     changeChat(index){
       this.activeChat=index;
       this.showOptions=null;
@@ -221,6 +225,9 @@ createApp({
         this.scrollToBottomOfChat();
       }, 0)
     },
+    /**
+     * Invia un nuovo messaggio contente il testo inserito in input da tastiera
+     */
     sendNewMessage(){
       if(this.newMessageText !== ""){
       const newMessage= {
@@ -240,13 +247,20 @@ createApp({
       }
       
     },
+    /**
+     * Restituisce la data e l'orario attuali
+     * @returns Stringa (data e orario attuali formattati)
+     */
     getTime(){
       const DateTime = luxon.DateTime;
       const now = DateTime.now().setLocale('it').toFormat('dd/LL/yyyy HH:mm:ss');
 
       return now;
-
     },
+    /**
+     * Invia una risposta automatica random da parte del contatto passato come paramentro
+     * @param {*} contactToAnwer Oggetto (contatto di cui bisogna simulare la risposta)
+     */
     botReceivedMessage(contactToAnwer){
       setTimeout(()=>{
         let i=0;
@@ -271,14 +285,28 @@ createApp({
         }
       },1000)
     },
+    /**
+     * Restituisce solo l'orario del messaggio di indice index passato come parametro della chat attiva
+     * @param {*} index Intero (indice del messaggio)
+     * @returns orario del messaggio
+     */
     formatTime(index){
       const date = this.contacts[this.activeChat].messages[index].date;
       return date.slice(11,16);
     },
+    /**
+     * Restituisce l'orario sulla base della stringa che viene passata come parametro
+     * @param {*} string (data e orario di cui bisogna restituire solo l'orario)
+     * @returns Stringa (orario estratto dalla stringa)
+     */
     formatTimeString(string){
       return string.slice(11,16);
-    }
-    ,
+    },
+    /**
+     * Restituisce l'orario dell'ultimo messaggio del contatto di indice index o una stringa vuota se non ci sono messaggi
+     * @param {*} index Intero (indice del contatto)
+     * @returns Stringa (orario dell'ultimo messaggio o strunga vuota)
+     */
     lastMessageFormatTime(index){
       if(this.contacts[index].messages.length !== 0){
         const date = this.contacts[index].messages[this.contacts[index].messages.length - 1].date;
@@ -287,6 +315,10 @@ createApp({
         return "";
       }
     },
+    /**
+     * Cancella il messaggio di indice index della chat attiva
+     * @param {*} index Intero (indice del messaggio da eliminare)
+     */
     deleteMessage(index){
       this.showOptions = null;
       if(this.contacts[this.activeChat].messages.length !== 1){
@@ -296,6 +328,11 @@ createApp({
         this.contacts[this.activeChat].messages = emptyArray;
       }
     },
+    /**
+     * Restituisce una stringa che indica se l'ultimo messaggio del contatto è stato inviato o ricevuto
+     * @param {*} contact Oggetto (contatto di cui bisogna verificare lo status dell'ultimo messaggio)
+     * @returns Stringa (status dell'ultimo messaggio)
+     */
     lastMessageSentReceived(contact){
       if(contact.messages.length !== 0){
         if(contact.messages[contact.messages.length - 1].status === "sent"){
@@ -307,10 +344,17 @@ createApp({
         return "";
       }
     },
+    /**
+     * Resetta i valori di showChevronOnHover e showOptions
+     */
     mouseleaveNull(){
       this.showChevronOnHover = null;
       this.showOptions = null;
     },
+    /**
+     * Apre il canvas con le informazioni del messaggio e scrive tutte le informazioni relative
+     * @param {*} index 
+     */
     openInfo(index){
       const message = this.contacts[this.activeChat].messages[index];
       this.fakeMessage = message;
@@ -322,12 +366,26 @@ createApp({
       }
       this.messsageInfoVisible = true;
     },
+    /**
+     * Chiude il canvas con le informazioni del messaggio
+     */
     closeInfo(){
       this.messsageInfoVisible = false;
     },
+    /**
+     * Restituisce un intero casuale tra min e max, estremi compresi
+     * @param {*} min Intero (valore minimo compreso)
+     * @param {*} max Intero (valore massimo compreso)
+     * @returns Intero (numero random)
+     */
     getRndInteger(min, max){
       return Math.floor(Math.random() * (max - min + 1) ) + min;
     },
+    /**
+     * Cerca la parola ricercata tra i messaggi all'interno del messaggio passato come parametro
+     * @param {*} message (messaggio da controllare)
+     * @returns Boolean (true se il messaggio contiene la stringa cercata, false se non la contiene)
+     */
     searchWordInMessage(message){
       if(this.searchedWord.trim().toLowerCase() !== ""){
         if(message.message.trim().toLowerCase().includes(this.searchedWord.trim().toLowerCase())){
@@ -339,10 +397,17 @@ createApp({
         return false;
       }
     },
+    /**
+     * Nasconde o mostra l'input della parola da cercare tra i messggi
+     */
     hideShowsearchWordInput(){
       this.searchedWordShow = !this.searchedWordShow;
       this.searchedWord = "";
     },
+    /**
+     * Aggiunge o rimuove il messaggio di indice index dai preferiti
+     * @param {*} index Intero (indice del messaggio a aggiungere o rimuovere dai preferiti)
+     */
     addRemoveFavouriteMessages(index){
       if(!this.contacts[this.activeChat].messages[index].favourite){
         this.contacts[this.activeChat].messages[index].favourite = true;
@@ -350,6 +415,11 @@ createApp({
         this.contacts[this.activeChat].messages[index].favourite = false;
       }
     },
+    /**
+     * Se il messaggio è uno dei preferiti mostra la stella
+     * @param {*} index Intero (indice del messaggio)
+     * @returns Boolean (true se è tra i preferiti, false se non lo è)
+     */
     showStar(index){
       if(this.contacts[this.activeChat].messages[index].favourite){
         return true;
@@ -357,6 +427,12 @@ createApp({
         return false;
       }
     },
+    /**
+     * Ritrona la stringa da scrivere all'intero del bottone per aggiungere o
+     * rimuovere il messaggio dai preferiti
+     * @param {*} index Intero (indice del messaggio)
+     * @returns Stringa (stringa da scrivere all'interno del bottone)
+     */
     buttonFavoriteMessage(index){
       if(this.contacts[this.activeChat].messages[index].favourite){
         return "Rimuovi dai preferiti";
@@ -364,10 +440,17 @@ createApp({
         return "Aggiungi ai preferiti";
       }
     },
+    /**
+     * Scrolla alla fine della chat
+     */
     scrollToBottomOfChat(){
       const element = document.getElementById("box");
         element.scrollTop = element.scrollHeight;
     },
+    /**
+     * Sposta il contatto a cui si è appena scritto in cima all'array e di conseguenza alla lista dei contatti
+     * @param {*} activeIndex Intero (indice del contatto da spostare in cima)
+     */
     moveContactToTop(activeIndex){
       const el = this.contacts[activeIndex];
       const exActive = activeIndex;
@@ -375,6 +458,10 @@ createApp({
       this.activeChat=0;
       this.contacts.splice(exActive+1, 1);
     },
+    /**
+     * Sposta il contatto che ha appena risposto in cima all'array e di conseguenza alla lista dei contatti
+     * @param {*} contactToAnwer Oggetto (contatto da spostare in cima)
+     */
     moveContactToTopReceived(contactToAnwer){
       let i=0;
       let found = false;

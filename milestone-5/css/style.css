@@ -29,6 +29,9 @@ body {
   background: linear-gradient(var(--background-green)  15%, var(--background-gray) 15%);
 }
 
+/**********************************************
+        UTILITIES
+**********************************************/
 .container {
   height: 90%;
   width: 80%;
@@ -45,6 +48,7 @@ body {
 .scrollbar-space{
   padding-right: 8px;
 }
+/**********************************************/
 
 /***** --sidebar-- *****/
 .sidebard {
@@ -300,6 +304,7 @@ body {
   background-color: yellow;
 }
 
+/***** informazioni messaggio *****/
 .info-message{
   position: fixed;
   top: 0;
@@ -354,7 +359,9 @@ body {
   display: block;
   padding: 30px;
 }
+/***** /informazioni messaggio *****/
 
+/***** input bar *****/
 .input-bar {
   background-color: var(--input-bar-grey);
   height: var(--input-bar-height);
@@ -381,4 +388,5 @@ body {
   height: var(--input-bar-height);
   cursor: pointer;
 }
+/***** /input bar *****/
 /***** --/chat-- *****/

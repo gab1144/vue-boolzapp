@@ -17,7 +17,9 @@
   
   <script src="https://unpkg.com/vue@3"></script>
   
+  <!-- ========== Luxon ========== -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/3.1.0/luxon.min.js" integrity="sha512-79nhbkASdW5wurW8DtF9Vd7BEDKdTbCKkh87lW6W3tk9T4L9Bc58MzmvRzjMcFCSKpjkoRjwzrTdfOa5lkfJ5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- ========== /Luxon ========== -->
 
   <link rel="stylesheet" href="css/style.css">
 
@@ -173,11 +175,6 @@
           <!-- ========== info messaggio ========== -->
           <div v-if="messsageInfoVisible" class="info-message">
 
-
-
-
-
-
             <div class="fake-message">
               <div class="message" :class="fakeMessage.status">
             
@@ -190,15 +187,6 @@
                 <span class="favourite" v-show="fakeMessage.favourite"><i class="fa-solid fa-star"></i></span>
               </div>
             </div>
-
-
-
-
-
-
-
-
-
 
             <button @click="closeInfo()" class="close-info"><i class="fa-solid fa-xmark"></i></button>
             <div class="message-information-area">
